@@ -38,7 +38,9 @@ NSString * const IWBundlePasswordVerifierFileName = @".iwpv2";
 	
 	_objectArchive = [[IWZipArchive alloc] initWithURL:[fileURL URLByAppendingPathComponent:IWBundleComponentZipFileName]];
 	if (_objectArchive == nil) {
-		return nil;
+        // 这里不再是index.zip 而直接是解压好的目录
+		// return nil;
+        return self;
 	}
 	
 	_decryptionKey = decryptionKey;

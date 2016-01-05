@@ -82,7 +82,7 @@
 	
 	// Make sure it's an iWork '13 file. We don't support other iWork formats.
 	if (![IWBundle validBundleExistsAtURL:url]) {
-		return NO;
+//		return NO;
 	}
 	
 	// If a password verifier is present, the document is encrypted.

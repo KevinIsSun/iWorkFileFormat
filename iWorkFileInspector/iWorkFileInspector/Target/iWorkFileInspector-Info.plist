@@ -7,6 +7,10 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>key</string>
+            </array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
@@ -14,15 +18,17 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.apple.iwork.keynote.key</string>
-			</array>
+			<array/>
 			<key>NSDocumentClass</key>
 			<string>IWDocument</string>
 			<key>NSIsRelatedItemType</key>
 			<true/>
 		</dict>
 		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pages</string>
+			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
@@ -30,15 +36,17 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.apple.iwork.pages.pages</string>
-			</array>
+			<array/>
 			<key>NSDocumentClass</key>
 			<string>IWDocument</string>
 			<key>NSIsRelatedItemType</key>
 			<true/>
 		</dict>
 		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>numbers</string>
+			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
@@ -46,9 +54,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.apple.iwork.numbers.numbers</string>
-			</array>
+			<array/>
 			<key>NSDocumentClass</key>
 			<string>IWDocument</string>
 			<key>NSIsRelatedItemType</key>
@@ -58,7 +64,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.seanpatrickobrien.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -74,7 +80,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 Sean Patrick O&apos;Brien. All rights reserved.</string>
+	<string>Copyright © 2013 Sean Patrick O'Brien. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
