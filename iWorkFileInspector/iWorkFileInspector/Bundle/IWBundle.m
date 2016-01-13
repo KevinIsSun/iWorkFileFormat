@@ -31,21 +31,32 @@ NSString * const IWBundlePasswordVerifierFileName = @".iwpv2";
 
 - (instancetype)initWithURL:(NSURL *)fileURL decryptionKey:(NSData *)decryptionKey
 {
-	self = [super init];
-	if (self == nil) {
-		return nil;
-	}
-	
-	_objectArchive = [[IWZipArchive alloc] initWithURL:[fileURL URLByAppendingPathComponent:IWBundleComponentZipFileName]];
-	if (_objectArchive == nil) {
-        // 这里不再是index.zip 而直接是解压好的目录
-		// return nil;
-        return self;
-	}
-	
-	_decryptionKey = decryptionKey;
-	
-	return self;
+    self = [super init];
+    if (self) {
+        _decryptionKey = decryptionKey;
+        
+        /*
+          +         The object archive can be in one of two places, depending
+          +         on which version of iWork was used:
+          +
+          +         1. The top level file (iWork '14)
+          +         2. In the bundle zip component file (iWork '13)
+          +         */
+        
+        
+        // Start with iWork '13 structure
+        _objectArchive = [[IWZipArchive alloc] initWithURL:[fileURL URLByAppendingPathComponent:IWBundleComponentZipFileName]];
+        if (_objectArchive == nil) {
+            // Try again with iWork '14
+            _objectArchive = [[IWZipArchive alloc] initWithURL:fileURL];
+        }
+        
+        if (_objectArchive == nil) {
+            return nil;
+        }
+    }
+    
+    return self;
 }
 
 - (NSArray *)componentNames
@@ -86,6 +97,13 @@ NSString * const IWBundlePasswordVerifierFileName = @".iwpv2";
 		data = [data decryptUsingIWAKey:_decryptionKey];
 	}
 	
+//    if ([componentName isEqualToString:@"Document"]) {
+//        NSError *error = nil;
+//        path=@"/Users/kevin/Downloads/test.txt";
+//        [data writeToFile:path options:NSDataWritingAtomic error:&error];
+//        NSLog(@"Write returned error: %@", [error localizedDescription]);
+//    }
+    
 	return [data snappyIWADecompressedData];
 }
 

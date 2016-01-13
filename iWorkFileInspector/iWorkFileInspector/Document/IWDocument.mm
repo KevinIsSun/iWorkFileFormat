@@ -130,7 +130,7 @@
 	
 	// Load the messages from each component.
 	for (NSString *componentName in _componentNames) {
-		NSArray *documentMessages = [self readDocumentMessagesForComponentName:componentName messageTypeRegistry:messageTypeRegistry];
+		NSArray *documentMessages = [self readDocumentMessagesForComponentName:componentName messageTypeRegistry:messageTypeRegistry];   
 		if (documentMessages == nil) {
 			return NO;
 		}
@@ -147,6 +147,7 @@
 
 - (NSArray *)readDocumentMessagesForComponentName:(NSString *)name messageTypeRegistry:(IWMessageTypeRegistry *)messageTypeRegistry
 {
+    NSLog(@"%@", name);
 	NSData *data = [_bundle dataForComponentName:name];
 	if (data == nil) {
 		NSLog(@"Failed to get component data");
@@ -199,6 +200,10 @@
 				IWDocumentMessage *documentMessage = [[IWDocumentMessage alloc] initWithMessage:message identifier:archiveInfo.identifier()];
 				if (documentMessage != nil) {
 					[messages addObject:documentMessage];
+                    if ([documentMessage.typeName isEqualToString:@"TSWP.StorageArchive"]) {
+                        NSLog(@"%@", documentMessage.contents);
+                        NSLog(@"====================");
+                    }
 				}
 				
 				delete message;
